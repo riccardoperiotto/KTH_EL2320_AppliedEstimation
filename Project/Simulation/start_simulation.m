@@ -159,7 +159,7 @@ function start_simulation(app)
          
         %% Applied Estimation
         % Get the measurement from GPS for the tractor
-        if mod(timestep, 5)==0 % s(rand(1) < 0.2)
+        if (rand(1) < 0.2) % mod(timestep, 5)==0 % s
             z_gps = timestep_data(5:6);
             % fprintf('new measure %f %f \n', z_gps(1), z_gps(2))
             total_measurements = total_measurements + 1;
@@ -314,14 +314,7 @@ function start_simulation(app)
         timestep = timestep + 1;
         pause(0.2);
     end
-     
-     for k = 1:length(short_term_plots)
-            if k < 5
-                delete(short_term_plots(k))
-            elseif size(z_gps,1) > 1 && k == 5
-                delete(short_term_plots(k))
-            end
-     end
+    
 
     if stop_execution == 0
         % get error statistics
